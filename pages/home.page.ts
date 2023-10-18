@@ -19,7 +19,7 @@ class HomePage {
     this.page = page;
     this.learnMoreBtn = page.locator("#cta-17ed3cfc4c");
     this.coursesBtn = page.locator("#menu-item-1383");
-    this.headingText = page.locator("text=Build and Strengthen");
+    this.headingText = page.locator("text=Build and Strengthenn"); //Errorified
     this.contactUsText = page.locator(
       "#contact-us-link:has-text('Contact Us')"
     );

@@ -1,30 +1,34 @@
 import { test, expect, APIRequestContext, APIResponse } from "@playwright/test";
 import HomePage from "../pages/home.page";
+import apiController from "../controller/api.controller";
 const { faker } = require("@faker-js/faker");
 
 test.describe("Contact", () => {
   let homePage: HomePage;
-  let fakerApi: APIRequestContext;
   let randomPerson: APIResponse;
 
   test.beforeAll(async ({ playwright }) => {
-    fakerApi = await playwright.request.newContext({
-      baseURL: "https://jsonplaceholder.typicode.com/",
-    });
+    // fakerApi = await playwright.request.newContext({
+    //   baseURL: "https://jsonplaceholder.typicode.com/",
+    // });
+    await apiController.init();
 
-    const response = await fakerApi.get("users");
-    const responseBody = await response.json();
-    randomPerson = responseBody[0];
+    // const response = await fakerApi.get("users");
+    // const responseBody = await response.json();
+    // randomPerson = responseBody[0];
+    randomPerson = await apiController.getUsers();
 
-    const postResponse = await fakerApi.post("/users/1/todos", {
-      data: {
-        title: "Learn playwright",
-        completed: "false",
-      },
-    });
+    // const postResponse = await fakerApi.post("/users/1/todos", {
+    //   data: {
+    //     title: "Learn playwright",
+    //     completed: "false",
+    //   },
+    // });
 
-    const postResponseBody = await postResponse.json();
-    console.log(postResponseBody);
+    // const postResponseBody = await postResponse.json();
+    // console.log(postResponseBody);
+    const newUserTodo = await apiController.postUsers();
+    console.log(newUserTodo);
   });
 
   test("Verify contact form fields", async ({ page }) => {

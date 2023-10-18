@@ -30,7 +30,7 @@ test.describe("Upload File", () => {
       );
     });
   }
-  test.skip("Should upload a test file", async ({ page }) => {
+  test("Should upload a test file", async ({ page }) => {
     cartPage = new CartPage(page);
     //open url
     // await page.goto("https://practice.sdetunicorns.com/cart/");
@@ -51,7 +51,7 @@ test.describe("Upload File", () => {
     );
   });
 
-  test.skip("Should upload a test file on hidden input", async ({ page }) => {
+  test("Should upload a test file on hidden input", async ({ page }) => {
     cartPage = new CartPage(page);
     //open url
     await cartPage.uploadComponent().navigate();
@@ -81,7 +81,7 @@ test.describe("Upload File", () => {
   });
 
   // WAIT for Timeout
-  test.skip("Should upload a test file while waiting for timeout -- Hardcoded", async ({
+  test("Should upload a test file while waiting for timeout -- Hardcoded", async ({
     page,
   }) => {
     //open url
@@ -97,7 +97,7 @@ test.describe("Upload File", () => {
     await page.locator("#upload_1").click();
 
     //hardcoded sleep --- WRONG WAY
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(20000);
 
     //assertion
     await expect(
@@ -106,7 +106,7 @@ test.describe("Upload File", () => {
   });
 
   // CONDITIONAL wait for Timeout
-  test.skip("Should upload a test file while wating conditionally for timeout", async ({
+  test("Should upload a test file while wating conditionally for timeout", async ({
     page,
   }) => {
     //open url
@@ -124,7 +124,7 @@ test.describe("Upload File", () => {
     //Wait for condition
     await page
       .locator("#wfu_messageblock_header_1_label_1")
-      .waitFor({ state: "visible", timeout: 10000 });
+      .waitFor({ state: "visible", timeout: 20000 });
 
     //assertion
     await expect(
@@ -133,14 +133,14 @@ test.describe("Upload File", () => {
   });
 
   //ASSERTION wait for timeout
-  test.skip("Should upload a test file using assertion wait for timeout", async ({
+  test("Should upload a test file using assertion wait for timeout", async ({
     page,
   }) => {
     //open url
     await page.goto("https://practice.sdetunicorns.com/cart/");
 
     //provide test file path
-    const filePath = path.join(__dirname, "../data/6mb-file.jpg");
+    const filePath = path.join(__dirname, "../data/chess.jpg");
 
     //upload test file
     await page.setInputFiles("input#upfile_1", filePath);
